@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-ToDoリストとメモアプリを合体させたCLIアプリを開発する。
+ToDoリストとメモアプリを合体させたCLIアプリ `vibe` を開発する。MVPの仕様は [docs/mvp.md](docs/mvp.md) を参照。
 
 ## 技術スタック
 
@@ -9,13 +9,11 @@ ToDoリストとメモアプリを合体させたCLIアプリを開発する。
 | 言語 | Go(1.24以上) | 単一バイナリで配布しやすく、起動が速い。ローカル環境は1.24.4 |
 | CLIフレームワーク | [Cobra](https://github.com/spf13/cobra) | Go製CLIで最も普及しており、サブコマンド構成や補完スクリプトの生成が得意 |
 | データの保存形式 | Markdownファイル群(1件1ファイル、front matter付き) | エディタで直接編集でき、Gitでも管理しやすい |
-| データの保存場所 | 既定は `$XDG_DATA_HOME/<コマンド名>/`(未設定時は `~/.local/share/<コマンド名>/`) | XDGに従う。環境変数か設定で任意のディレクトリ(Git管理下など)に変えられるようにする |
+| データの保存場所 | 既定は `$XDG_DATA_HOME/vibe/`(未設定時は `~/.local/share/vibe/`) | XDGに従う。MVPでは `XDG_DATA_HOME` で場所を変える。独自の環境変数や設定はMVPの後で検討する |
 | テスト | 標準の `testing` + [go-cmp](https://github.com/google/go-cmp) | テーブル駆動テストを基本にする。構造体の比較だけgo-cmpを使い、差分を見やすくする |
 | リンター・フォーマッター | `go vet` + `gofmt` | 標準ツールだけの最小構成にする |
 | パッケージ管理 | Go Modules | Goの標準 |
 | 配布 | `go install` | 当面は追加の仕組みを作らない |
-
-- コマンド名は未定。決まるまでは仮に `vibe` とする
 
 ## 開発プロセス
 
